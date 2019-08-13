@@ -1,5 +1,5 @@
 import React from 'react';
-import { formSubmission } from '../events/client-events';
+import { formSubmission } from '../events';
 
 import { Todo } from '../interfaces';
 
@@ -34,7 +34,7 @@ function TodoTextInput({
 				method='POST'
 				action={ `/todos?=filter=${filter ? filter : '' }`}
 				onSubmit={
-					(event) => formSubmission(event, todo && todo.id, flipEdit)
+					(event) => formSubmission(event, todo && todo._id, flipEdit)
 				}>
 
 				<input id="todoInput"
@@ -44,7 +44,7 @@ function TodoTextInput({
 					placeholder={ placeholder }
 					defaultValue={ todo.title }
 					autoFocus={ editing }
-					onBlur={ (event) => saveChange(event, todo.id) } />
+					onBlur={ (event) => saveChange(event, todo._id) } />
 			</form>
 		);
 	}

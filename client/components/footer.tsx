@@ -1,9 +1,9 @@
 import React from 'react';
-import { AppContext } from '../store/state-mgmt';
-import { completeAll, clearCompleted } from '../events/client-events';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/todo-filters';
+import { AppContext } from '../state/state-mgmt';
+import { completeAll, clearCompleted } from '../events';
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants';
 
-import { State } from '../interfaces';
+import { State, Todo } from '../interfaces';
 
 let FILTER_TITLES = {
 	[SHOW_ALL]: 'All',
@@ -16,9 +16,10 @@ interface Props {
 	count?: number;
 	filter?: string;
 	active?: number;
+	todos?: Todo[]
 }
 
-function Footer({ filter, count, completed, active }: Props) {
+function Footer({ filter, count, completed, active, todos }: Props) {
 
 	if (count) {
 		function RenderTodoCount() {
@@ -48,7 +49,7 @@ function Footer({ filter, count, completed, active }: Props) {
 			if (completed > 0) {
 				return (
 					<button className="clear-completed"
-							onClick={ () => clearCompleted() }>
+							onClick={ (event) => clearCompleted(event, todos) }>
 						Clear completed
 					</button>
 				);
@@ -93,6 +94,7 @@ export default function () {
 						count={ count }
 						completed={ completed }
 						active={ active }
+						todos={ todos }
 					 />
 				);
 			}}

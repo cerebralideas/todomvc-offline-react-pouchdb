@@ -1,9 +1,9 @@
 import React from 'react';
-import { AppContext } from '../store/state-mgmt';
+import { AppContext } from '../state/state-mgmt';
 import TodoItem from './todo-item';
 import ToggleAll from './toggle-all';
 import Footer from './footer';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/todo-filters';
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants';
 
 import { State } from '../interfaces';
 
@@ -21,7 +21,7 @@ export function TodoList({ todos, filter }: State) {
 			<ToggleAll />
 			<ul className="todo-list">
 				{filteredTodos.map(todo => (
-					<TodoItem key={ todo.id } todo={ todo } filter={ filter } />
+					<TodoItem key={ todo._id } todo={ todo } filter={ filter } />
 				))}
 			</ul>
 			<Footer />

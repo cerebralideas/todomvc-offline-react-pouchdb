@@ -1,15 +1,16 @@
 import React from 'react';
-import { AppContext } from '../store/state-mgmt';
-import { completeAll } from '../events/client-events';
+import { AppContext } from '../state/state-mgmt';
+import { completeAll } from '../events';
 
-import { State } from '../interfaces';
+import { State, Todo } from '../interfaces';
 
 interface Props {
 	count: number;
 	completed: number;
+	todos: Todo[]
 }
 
-function ToggleAll({ count, completed }: Props) {
+function ToggleAll({ count, completed, todos }: Props) {
 	if (count > 0) {
 		return (
 			<>
@@ -17,7 +18,7 @@ function ToggleAll({ count, completed }: Props) {
 						className="toggle-all"
 						type="checkbox"
 						checked={ completed === count }
-						onChange={ completeAll }/>
+						onChange={ event => completeAll(event, todos) }/>
 				<label htmlFor="toggle-all" />
 			</>
 		);
@@ -36,7 +37,7 @@ export default function () {
 					),
 					0
 				);
-				return <ToggleAll count={ count } completed={ completed } />
+				return <ToggleAll count={ count } completed={ completed } todos={ todos } />
 			}}
 		</AppContext.Consumer>
 	);

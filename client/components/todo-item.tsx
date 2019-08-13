@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TodoTextInput from './todo-text-input';
-import { deleteTodo, completeTodo } from '../events/client-events';
+import { deleteTodo, completeTodo } from '../events';
 
 import { Todo } from '../interfaces';
 
@@ -45,16 +45,16 @@ export default function TodoItem ({ todo, filter }: Prop) { // save
 			<div className="view">
 				<form id="completeForm"
 					method="POST"
-					action={ `/todos/${ todo.id }?type=COMPLETE_TODO&filter=${ filter }` }>
+					action={ `/todos/${ todo._id }?type=COMPLETE_TODO&filter=${ filter }` }>
 					<input id="completeTodo"
 						className="toggle"
 						type="checkbox"
 						checked={ todo.completed }
-						onChange={ (event) => completeTodo(event, todo.id) } />
+						onChange={ (event) => completeTodo(event, todo._id) } />
 					<label htmlFor="completeTodo">
 						<button type="submit"
 							style={ cssCompleteButton }
-							onClick={ (event) => completeTodo(event, todo.id) }
+							onClick={ (event) => completeTodo(event, todo._id) }
 							onDoubleClick={ () => flipEdit(true) }>
 							{todo.title}
 						</button>
@@ -62,12 +62,12 @@ export default function TodoItem ({ todo, filter }: Prop) { // save
 				</form>
 				<form id="deleteForm"
 					method="POST"
-					action={ `/todos/${ todo.id }?type=DELETE_TODO&filter=${ filter }` }
+					action={ `/todos/${ todo._id }?type=DELETE_TODO&filter=${ filter }` }
 					style={ cssDestroyForm }>
 					<button type="submit"
 						style={ cssDestroyEl}
 						className="destroy"
-						onClick={ (event) => deleteTodo(event, todo.id) }>
+						onClick={ (event) => deleteTodo(event, todo._id) }>
 						<span style={ cssDestroyText }>Delete Todo</span>
 					</button>
 				</form>

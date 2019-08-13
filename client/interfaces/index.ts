@@ -1,7 +1,8 @@
 export interface Todo {
 	title: string;
 	completed?: boolean;
-	id?: number;
+	_id?: string;
+	_rev?: string;
 }
 export interface State {
 	todos: Todo[];
@@ -11,12 +12,4 @@ export interface Doc {
 	_id: string;
 	_rev: string;
 	todos: Todo[];
-}
-export interface Action {
-	type: string;
-	payload?: {
-		id?: number;
-		title?: string;
-		filter?: string;
-	};
 }

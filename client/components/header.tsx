@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppContext } from '../store/state-mgmt';
+import { AppContext } from '../state/state-mgmt';
 import TodoTextInput from './todo-text-input';
 
 import { State } from '../interfaces';

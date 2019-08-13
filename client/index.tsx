@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './views/app';
-import db from './store/store';
+import db from './state/store';
 
 import 'todomvc-app-css/index.css';
 import './views/app.css';
@@ -14,9 +14,12 @@ if (WEBPACK_ENV !== 'production') {
 
 document.addEventListener("DOMContentLoaded", (): void => {
 
-	db.allDocs({ include_docs: true })
+	db.allDocs({
+			include_docs: true,
+			descending: true
+		})
 		.then((response) => {
-			const state = {
+			const data = {
 				todos: response.rows ?
 					response.rows.map((row) => row.doc):
 					[],
@@ -24,7 +27,7 @@ document.addEventListener("DOMContentLoaded", (): void => {
 			};
 
 			ReactDOM.render(
-				<App state={ state } />,
+				<App initialData={ data } />,
 				document.getElementById('root')
 			);
 		})

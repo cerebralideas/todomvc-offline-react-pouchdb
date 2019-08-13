@@ -1,17 +1,27 @@
 # "Offline-First" TodoMVC Example
 
+## Progress
+
+- [ ] Feature: Add routing capability
+- [ ] Feature: Add edit capability
+- [ ] Feature: Add all bulk functionality: complete all, delete completed
+- [x] Feature: Add all basic todo functionality: add, complete, delete
+- [x] Get the app to rerender when the PouchDB is updated
+- [x] Get the TodoMVC app to render todos stored within IndexedDB using PouchDB
+- [x] Initialize the application from [this previous TodoMVC application](https://github.com/cerebralideas/todomvc-universal-react-pouchdb)
+
+
 ## Up and Running
 
 1. Install the dependencies found in the `package.json`
 2. Compile the TypeScript to JavaScript
-3. Run the server
 
   ```
   npm install
   npm run build
   ```
 
-4. Open `public/index.html` in your browser.
+3. Open `public/index.html` in your browser.
 
 ## What's an "offline-first" application?
 
@@ -92,9 +102,3 @@ _If you have other helpful links to share, or find any of the links above no lon
 ## How it works
 
 Coming soon ...
-
-## TODO
-
-- [ ] Get the app to rerender when the PouchDB is updated
-- [x] Get the TodoMVC app to render todos stored within IndexedDB using PouchDB
-- [x] Initialize the application from [this previous TodoMVC application](https://github.com/cerebralideas/todomvc-universal-react-pouchdb)
