@@ -1,7 +1,15 @@
 # "Offline-First" TodoMVC Example
 
-## Progress
+## Project Intention
 
+This is my attempt at building an architecture for exactly what a todo application would need: offline-first, light-weight but syncs with remote server (when online) to be able to provide multi-device utilization.
+
+## Project Progress
+
+[NOTE: Each commit below is a working version of the application. Listed from latest to oldest.]
+
+- [ ] Feature: Add offline caching capability
+- [ ] Feature: Add server syncing
 - [ ] Feature: Add routing capability
 - [ ] Feature: Add edit capability
 - [ ] Fix: bug with clicking just off the label completes wrong todo
@@ -14,15 +22,12 @@
 
 ## Up and Running
 
-1. Install the dependencies found in the `package.json`
-2. Compile the TypeScript to JavaScript
-
   ```
   npm install
   npm run build
   ```
 
-3. Open `public/index.html` in your browser.
+Open `public/index.html` in your browser.
 
 ## What's an "offline-first" application?
 
