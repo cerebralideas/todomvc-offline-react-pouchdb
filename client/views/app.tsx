@@ -9,10 +9,10 @@ export default function App({ initialData }) {
 
 	return (
 		<AppContext.Provider value={ state }>
-			<div>
+			<main>
 				<Header />
 				<TodoListWrapper />
-			</div>
+			</main>
 		</AppContext.Provider>
 	);
 }

@@ -19,7 +19,9 @@ function ToggleAll({ count, completed, todos }: Props) {
 						type="checkbox"
 						checked={ completed === count }
 						onChange={ event => completeAll(event, todos) }/>
-				<label htmlFor="toggle-all" />
+				<label htmlFor="toggle-all">
+					<span className="a11y-text">Complete All Todos</span>
+				</label>
 			</>
 		);
 	} else {

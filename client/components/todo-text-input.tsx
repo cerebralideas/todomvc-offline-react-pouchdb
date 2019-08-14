@@ -20,25 +20,28 @@ function TodoTextInput({
 		flipEdit,
 		filter
 	}: Props) {
-		let isEditing = editing ? 'edit' : '';
-		let isNew = newTodo ? 'new-todo' : '';
+		let editingClass = editing ? 'edit' : '';
+		let newClass = newTodo ? 'new-todo' : '';
 
 		function saveChange(event, id) {
 			if (editing) {
-				formSubmission(event, id, flipEdit);
+				formSubmission(event, id, ( editingClass || newClass ), flipEdit);
 			}
 		}
 
 		return (
-			<form id='todoForm'
+			<form id={ `todoForm_${ editing ? 'edit' : 'new' }` }
 				method='POST'
 				action={ `/todos?=filter=${filter ? filter : '' }`}
 				onSubmit={
-					(event) => formSubmission(event, todo && todo._id, flipEdit)
+					(event) => formSubmission(event, todo && todo._id, ( editing ? 'edit' : 'new' ), flipEdit)
 				}>
-
-				<input id="todoInput"
-					className={ isEditing || isNew }
+				<label htmlFor={ `todoInput_${ editing ? 'edit' : 'new' }` }
+					className="a11y-text">
+					Add new todo:
+				</label>
+				<input id={ `todoInput_${ editing ? 'edit' : 'new' }` }
+					className={ editingClass || newClass }
 					name='title'
 					type='text'
 					placeholder={ placeholder }

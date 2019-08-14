@@ -11,8 +11,9 @@ This is my attempt at building an architecture for exactly what a todo applicati
 - [ ] Feature: Add offline caching capability
 - [ ] Feature: Add server syncing
 - [ ] Feature: Add routing capability
-- [ ] Feature: Add edit capability
-- [ ] Fix: bug with clicking just off the label completes wrong todo
+- [x] Feature: Add edit capability
+- [x] Fix: address a11y bugs that are within control (some are design decisions from the original project)
+- [x] Fix: bug with clicking just off the label completes wrong todo
 - [x] Feature: Add all bulk functionality: complete all, delete completed (included interesting [debounce-like solution](https://github.com/cerebralideas/todomvc-offline-react-pouchdb/blob/7dbadb68bf4594e0557693faf35edfd53c19db08/client/state/utilities.ts)) [(#7dbadb6)](https://github.com/cerebralideas/todomvc-offline-react-pouchdb/commit/7dbadb68bf4594e0557693faf35edfd53c19db08)
 - [x] Feature: Add all basic todo functionality: add, complete, delete [(#ddb09fb)](https://github.com/cerebralideas/todomvc-offline-react-pouchdb/commit/ddb09fb84cc21918e22b5dca246ca4e828f29a9e)
 - [x] Get the app to rerender when the PouchDB is updated [(#c242fdb)](https://github.com/cerebralideas/todomvc-offline-react-pouchdb/commit/c242fdbb15df8bc324fb576d30aed464519fbc22)

@@ -43,15 +43,15 @@ export default function TodoItem ({ todo, filter }: Prop) { // save
 	} else {
 		element = (
 			<div className="view">
-				<form id="completeForm"
+				<form id={ `completeForm_${todo._id}` }
 					method="POST"
 					action={ `/todos/${ todo._id }?type=COMPLETE_TODO&filter=${ filter }` }>
-					<input id="completeTodo"
+					<input id={ `completeInput_${todo._id}` }
 						className="toggle"
 						type="checkbox"
 						checked={ todo.completed }
 						onChange={ (event) => completeTodo(event, todo._id) } />
-					<label htmlFor="completeTodo">
+					<label htmlFor={ `completeInput_${todo._id}` }>
 						<button type="submit"
 							style={ cssCompleteButton }
 							onClick={ (event) => completeTodo(event, todo._id) }
@@ -60,7 +60,7 @@ export default function TodoItem ({ todo, filter }: Prop) { // save
 						</button>
 					</label>
 				</form>
-				<form id="deleteForm"
+				<form id={ `deleteForm_${todo._id}` }
 					method="POST"
 					action={ `/todos/${ todo._id }?type=DELETE_TODO&filter=${ filter }` }
 					style={ cssDestroyForm }>

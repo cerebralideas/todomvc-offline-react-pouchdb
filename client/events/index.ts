@@ -3,10 +3,10 @@ import db from '../state/store';
 /** *******************************
  * Client & Server db Sync actions
  */
-export function formSubmission(event, _id: string, flipEdit?): void {
+export function formSubmission(event, _id: string, state: string, flipEdit?): void {
 	let title: string =
-		event.currentTarget.id === 'todoForm'
-			? event.currentTarget.elements.todoInput.value
+		event.currentTarget.id === `todoForm_${state}`
+			? event.currentTarget.elements[`todoInput_${state}`].value
 			: event.currentTarget.value;
 
 	event.preventDefault();
@@ -23,6 +23,7 @@ export function formSubmission(event, _id: string, flipEdit?): void {
 				title
 			}).then((response) => {
 				console.log('Todo has been updated');
+				flipEdit(false);
 			});
 		});
 	} else if (_id && !title) {
@@ -34,6 +35,7 @@ export function formSubmission(event, _id: string, flipEdit?): void {
 				_deleted: true
 			}).then((response) => {
 				console.log('Todo has been deleted');
+				flipEdit(false);
 			});
 		});
 	} else {
@@ -46,7 +48,7 @@ export function formSubmission(event, _id: string, flipEdit?): void {
 		}).then((response) => {
 			console.log('Todo has been saved');
 		});
-		event.currentTarget.elements.todoInput.value = '';
+		event.currentTarget.elements[`todoInput_${state}`].value = '';
 	}
 }
 export function completeTodo(event, _id: string): void {
