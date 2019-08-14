@@ -75,9 +75,52 @@ export function deleteTodo(event, _id: string): void {
 }
 export function completeAll(event, todos): void {
 	// Fire action on db
-	return;
+	const incompleteTodos = [];
+	let hasIncompleteTodos = false;
+
+	for (let i = 0; i < todos.length; i++) {
+		if (todos[i].completed === false) {
+			hasIncompleteTodos = true;
+			break;
+		}
+	}
+	for (let i = 0; i < todos.length; i++) {
+		if (hasIncompleteTodos) {
+			if (todos[i].completed === false) {
+				let todo = {
+					// spread properties to prevent mutation
+					...todos[i],
+					completed: !todos[i].completed
+				};
+				incompleteTodos.push(todo);
+			}
+		} else {
+			let todo = {
+				// spread properties to prevent mutation
+				...todos[i],
+				completed: false
+			};
+			incompleteTodos.push(todo);
+		}
+	}
+	db.bulkDocs(incompleteTodos).then((response) => {
+		console.log('Todos have been completed');
+	});
 }
 export function clearCompleted(event, todos): void {
 	// Fire action on db
-	return;
+	const clearedTodos = [];
+	for (let i = 0; i < todos.length; i++) {
+		if (todos[i].completed === true) {
+			let todo = {
+				// spread properties to prevent mutation
+				...todos[i],
+				_deleted: true
+			};
+			clearedTodos.push(todo);
+		}
+	}
+	db.bulkDocs(clearedTodos).then((response) => {
+		console.log('Completed todos have been cleared');
+	});
 }
